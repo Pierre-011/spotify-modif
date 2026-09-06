@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artistes — édition JSON</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Artistes</h1>
+      <p>Charge <code>artistes.json</code>, modifie les données, puis envoie la mise à jour dans GitHub.</p>
+    </div>
+
+    <div class="actions">
+      <button id="reloadBtn" type="button">Recharger</button>
+      <button id="saveBtn" type="button" class="primary">Enregistrer sur GitHub</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel sidebar">
+      <div class="searchRow">
+        <input id="searchInput" type="search" placeholder="Rechercher un artiste…" />
+      </div>
+
+      <div class="metaRow">
+        <span id="countLabel">0 artiste</span>
+        <span id="dirtyLabel" class="badge muted">Aucune modification</span>
+      </div>
+
+      <ul id="artistList" class="artistList"></ul>
+    </aside>
+
+    <section class="panel editor">
+      <div class="editorHeader">
+        <div>
+          <h2 id="editorTitle">Sélectionne un artiste</h2>
+          <p id="fileStatus" class="subtle">Fichier: artistes.json</p>
+        </div>
+        <div class="editorButtons">
+          <button id="revertBtn" type="button">Annuler</button>
+          <button id="applyBtn" type="button" class="primary">Appliquer à l’artiste</button>
+        </div>
+      </div>
+
+      <form id="artistForm" class="formGrid">
+        <label>ID<input id="idField" type="text" readonly /></label>
+        <label>Nom<input id="nameField" type="text" /></label>
+        <label>URL Spotify<input id="urlField" type="url" /></label>
+        <label>URI<input id="uriField" type="text" /></label>
+        <label>Followers<input id="followersField" type="text" placeholder="null ou nombre" /></label>
+        <label>Monthly listeners<input id="listenersField" type="number" min="0" step="1" /></label>
+        <label>Popularity<input id="popularityField" type="text" placeholder="null ou nombre" /></label>
+        <label class="full">Genres<input id="genresField" type="text" placeholder="Séparés par des virgules" /></label>
+        <label class="full">Images (JSON)<textarea id="imagesField" rows="4" placeholder='[ { "url": "..." } ]'></textarea></label>
+        <label class="full">External URLs (JSON)<textarea id="externalUrlsField" rows="3" placeholder='{ "spotify": "..." }'></textarea></label>
+        <label>First seen<input id="firstSeenField" type="text" /></label>
+        <label>Last seen<input id="lastSeenField" type="text" /></label>
+      </form>
+
+      <section class="diffBox">
+        <h3>Changements détectés</h3>
+        <pre id="diffOutput">Aucun artiste sélectionné.</pre>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
